@@ -148,14 +148,17 @@ class ValidatorGenerator:
             "2. Use registerValidation(argc, argv) in main function",
             "3. Validate all input constraints mentioned in the problem",
             "4. Use appropriate testlib functions like inf.readInt(), inf.readSpace(), inf.readEoln(), etc.",
-            "5. Ensure the validator checks all bounds and format requirements",
+            # "5. Ensure the validator checks all bounds and format requirements, keep in mind that readX arguments are being checked inside no need to check them again if you used those",
             "6. End with inf.readEof() to ensure no extra input",
-            "7. Use ensuref() for constraint validation with descriptive error messages",
+            "7. Use ensuref() for constraint validation with descriptive error messages for the values that weren't checked in readX functions, for instance if `int k = inf.readInt(0, N, \"k\");` you don't have to check that k is in [0, N] once again",
             "8. Don't forget to #include the standard libraries used",
             "9. Don't forget to use constants like 1'000'000 instead of 1000000",
             "10. For IOI type problems use `validator.group()` to get `std::string` denoting a group of the current validated test. The group names are always a number with no leading zeros, i.e. \"1\", \"2\", ..., \"10\"",
             "11. If the problem has test cases `setTestCase` has to be called",
+            f"12. Make a header saying that the validator is LLM generated and which model and version ({self.model}) built it",
             "",
+            "Some Testlib info:",
+            "readToken overloads: readToken(pattern), readToken(pattern, variableName); example: readToken(\"[01]{100}\", \"s\")",
             "Generate only the C++ code without any explanations or markdown formatting."
         ])
 
